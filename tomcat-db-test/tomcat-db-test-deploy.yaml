@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: was
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: was
+  template:
+    metadata:
+      labels:
+        app: was
+    spec:
+      containers:
+      - name: tomcat
+        image: 8bin/tomcat-dbtest:1.0.0
+        ports:
+        - containerPort: 8080
+        env:
+        - name: DB_HOST
+          value: rapa-vpc-database.cli6i8o4idvt.ap-northeast-2.rds.amazonaws.com
+        - name: DB_NAME
+          value: testdb
+        - name: DB_USER
+          value: admin
+        - name: DB_PASSWORD
+          value: test1234
+
